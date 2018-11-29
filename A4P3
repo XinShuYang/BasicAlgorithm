@@ -1,0 +1,60 @@
+Procedure B&B()
+begin
+    E: nodepointer;
+    E := new(node);	
+			
+    H: = minheap();	
+	//we need	 a min heap because we need the miniest cost 		in this problem.
+  
+   while(true) do 
+      if(E is a final leaf) then
+         print out the path from E to the root;
+         return;
+      endif
+      Expand(E);
+      if(H is empty) then
+	report that there is no solution;
+	return;
+      endif
+      E := delete-top(H);	
+   endwhile
+end
+
+Procedure Expand(node E)
+begin
+   Int cost=0;
+   I := E->I;
+   X,p: nodepointer;
+   S[1:n;1:2]: integer; 
+//S is a bitmap set initialized to 0
+// S will contain the connection relationship between node which from root to E and E, and the color of the node itself.
+  
+   p := E;
+   while (p is not the root) do
+	 
+      S[p->J,0]:=1;
+	 S[p->J,1]:=p->color
+      p := p-> Parent;
+   endwhile
+   for c=1 to k do  //totally k type colors
+         X := new(node);
+         X->I := I + 1;
+         X->color := c;
+         X->Parent := E;
+		for i=1 to I+1 do
+			if((i,I+1) is an edge && X[i]->color==c) then
+				cost=cost+1;
+			endif
+         X->Cost := E->Cost + cost;
+         Insert(X,H);
+   endfor
+end
+
+
+Record node
+    Begin
+       Parent: nodepointer;
+       I: int;	//order number I
+       color: int;	//color is a value in[1:k]
+       Cost: int;
+    end
