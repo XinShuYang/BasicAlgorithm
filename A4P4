@@ -1,0 +1,56 @@
+Problem 4
+Function HamiB&B(Input:Output:int cost)
+begin
+    E: nodepointer;
+    E := new(node);	
+			
+    H: minheap;	
+	//we need	 a min heap because we need the minimum cost 		in this problem.
+  
+   while(true) do 
+      if(E is a final leaf) then
+         print E->value;
+         return;
+      endif
+      Expand(E);
+      if(H is empty) then
+	report that there is no solution;
+	return;
+      endif
+      E := delete-top(H);	
+   endwhile
+end
+
+Procedure Expand(E)
+begin
+
+   I := E->I;
+   X,p: nodepointer;
+   Int S[1:n]: =0 ; 
+//S is a bitmap set initialized to 0
+// S will contain the connection relationship between node and E.
+  
+   p := E;
+   while (p is not the root) do	 
+      S[p->D]:=1;
+      p:=p->Parent;
+   endwhile
+   for Des=1 to n do
+      if(S[Des]==0 && E[E->D,Des]==1) then
+         X := new(node);
+         X->I := I + 1;
+         X->D := Des;
+         X->Parent := E;
+         X->Cost := E->Cost + W[E->D,Des];
+         Insert(X,H);
+      endif
+   endfor
+end
+
+Record node
+    Begin
+       Parent: nodepointer;
+       I: int;	//order number I
+       D: int;	//color is a value in[1:k]
+       Cost: int;
+    end
